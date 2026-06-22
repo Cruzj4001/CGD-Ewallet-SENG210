@@ -32,7 +32,31 @@ public class EWalletApp implements Expenser
    		expenses.add(Ex);
 	}
 
+	@Override
+public void PrintIncomereport()
+{
+    if (incomes.isEmpty())
+    {
+        System.out.println("No income data exists.");
+        return;
+    }
 
+    double totalIncome = 0;
 
+    System.out.println("===== INCOME REPORT =====");
+
+    for (Wage wage : incomes)
+    {
+        System.out.println(
+                "Source: " + wage.source +
+                " | Amount: $" + wage.amount +
+                " | Month: " + wage.Month);
+
+        totalIncome += wage.amount;
+    }
+
+    System.out.println("-------------------------");
+    System.out.println("Total Income: $" + totalIncome);
+}
 	
 }
