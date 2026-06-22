@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class EWalletApp
+public class EWalletApp implements Expenser
 {
 
 	//this is the app class, has the GUI and create one object of your expense calculator class. The expense calculator class is the implementation of the Expenser interface 
@@ -20,6 +20,7 @@ public class EWalletApp
 		
 	}
 
+	@Override
 	public void addMonthlyIncome(Wage W) 
 	{
    		incomes.add(W);
