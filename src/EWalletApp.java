@@ -1,8 +1,31 @@
 import java.util.ArrayList;
 
-public class EWalletApp {
-	//this is the app class, has the GUI and create one object of your expense calculator class. The expense calculator class is the implementation of the Expenser interface 
-	private ArrayList<User> AllData;
-	public void CreateUser(String username, String password) {}
+public class EWalletApp
+{
 
+	//this is the app class, has the GUI and create one object of your expense calculator class. The expense calculator class is the implementation of the Expenser interface 
+	
+	public static void main(String[] args)
+	{
+		EWalletApp app = new EWalletApp();
+	}
+	
+	private ArrayList<User> AllData;
+
+	private ArrayList<Wage> incomes = new ArrayList<>();
+    
+
+	public void CreateUser(String username, String password) 
+	{
+		
+	}
+
+	public void addMonthlyIncome(Wage W) 
+	{
+   		incomes.add(W);
+	}
+
+
+
+	
 }
