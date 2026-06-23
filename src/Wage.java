@@ -10,6 +10,8 @@ public class Wage
 
 	public Wage(String incomeSource, double incomeAmount, int incomeFreq) 
 	{
-        //TODO Auto-generated constructor stub
+        this.source = source;
+		this.amount = amount;
+		this.Month = Month;
     }
 }
