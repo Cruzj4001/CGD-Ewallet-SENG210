@@ -47,13 +47,13 @@ public class EWalletApp implements Expenser
   }
   
   @Override
-  public void PrintExpensereport()
-  {
+	public void PrintExpensereport()
+	{
     if (expenses.isEmpty())
     {
         System.out.println("No expense data exists.");
         return;
-    }
+	}
 
     double totalExpenses = 0;
 
@@ -67,7 +67,7 @@ public class EWalletApp implements Expenser
                 " | Frequency: " + expense.yearlyfrequency);
 
         totalExpenses += expense.amount;
-     }
+	}
 
     System.out.println("--------------------------");
     System.out.println("Total Expenses: $" + totalExpenses);
