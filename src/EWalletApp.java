@@ -46,7 +46,7 @@ public class EWalletApp implements Expenser
     System.out.println("===== INCOME REPORT =====");
   }
   
-  @Override
+	@Override
 	public void PrintExpensereport()
 	{
     if (expenses.isEmpty())
@@ -67,7 +67,7 @@ public class EWalletApp implements Expenser
                 " | Frequency: " + expense.yearlyfrequency);
 
         totalExpenses += expense.amount;
-	}
+	 }
 
     System.out.println("--------------------------");
     System.out.println("Total Expenses: $" + totalExpenses);
