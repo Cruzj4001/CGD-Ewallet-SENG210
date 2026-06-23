@@ -33,8 +33,8 @@ public class EWalletApp implements Expenser
 	}
 
 	@Override
-public void PrintIncomereport()
-{
+  public void PrintIncomereport()
+  {
     if (incomes.isEmpty())
     {
         System.out.println("No income data exists.");
@@ -44,6 +44,33 @@ public void PrintIncomereport()
     double totalIncome = 0;
 
     System.out.println("===== INCOME REPORT =====");
+  }
+  
+  @Override
+  public void PrintExpensereport()
+  {
+    if (expenses.isEmpty())
+    {
+        System.out.println("No expense data exists.");
+        return;
+    }
+
+    double totalExpenses = 0;
+
+    System.out.println("===== EXPENSE REPORT =====");
+
+    for (Expense expense : expenses)
+    {
+        System.out.println(
+                "Source: " + expense.source +
+                " | Amount: $" + expense.amount +
+                " | Frequency: " + expense.yearlyfrequency);
+
+        totalExpenses += expense.amount;
+     }
+
+    System.out.println("--------------------------");
+    System.out.println("Total Expenses: $" + totalExpenses);
 
     for (Wage wage : incomes)
     {
@@ -57,6 +84,6 @@ public void PrintIncomereport()
 
     System.out.println("-------------------------");
     System.out.println("Total Income: $" + totalIncome);
-}
+  }
 	
 }
