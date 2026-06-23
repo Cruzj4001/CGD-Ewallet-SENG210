@@ -33,8 +33,8 @@ public class EWalletApp implements Expenser
 	}
 
 	@Override
-  public void PrintIncomereport()
-  {
+	public void PrintIncomereport()
+	{
     if (incomes.isEmpty())
     {
         System.out.println("No income data exists.");
@@ -84,6 +84,7 @@ public class EWalletApp implements Expenser
 
     System.out.println("-------------------------");
     System.out.println("Total Income: $" + totalIncome);
-  }
+	  
+  	}
 	
 }
