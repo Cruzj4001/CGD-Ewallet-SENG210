@@ -32,7 +32,32 @@ public class EWalletApp implements Expenser
    		expenses.add(Ex);
 	}
 
+	@Override
+public void PrintExpensereport()
+{
+    if (expenses.isEmpty())
+    {
+        System.out.println("No expense data exists.");
+        return;
+    }
 
+    double totalExpenses = 0;
+
+    System.out.println("===== EXPENSE REPORT =====");
+
+    for (Expense expense : expenses)
+    {
+        System.out.println(
+                "Source: " + expense.source +
+                " | Amount: $" + expense.amount +
+                " | Frequency: " + expense.yearlyfrequency);
+
+        totalExpenses += expense.amount;
+    }
+
+    System.out.println("--------------------------");
+    System.out.println("Total Expenses: $" + totalExpenses);
+}
 
 	
 }
