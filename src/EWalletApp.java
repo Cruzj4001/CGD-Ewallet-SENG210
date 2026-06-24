@@ -18,47 +18,65 @@ public class EWalletApp implements Expenser
 
 	public static void main(String[] args)
 	{
+
 		EWalletApp app = new EWalletApp();
 		Scanner input = new Scanner(System.in);
 
 		System.out.println("Welcome to your Ewallet!");
 
-		// Income stuff
+		while (true)
+		{
+			System.out.println("\n---- MENU ----");
+			System.out.println("1. Add Income");
+			System.out.println("2. Add Expense");
+			System.out.println("3. View Reports");
+			System.out.println("4. Exit");
 
-		System.out.print("\nEnter income source: ");
-		String incomeSource = input.nextLine();
+			int choice = input.nextInt();
+			input.nextLine();
 
-		System.out.print("Enter income amount: ");
-		double incomeAmount = input.nextDouble();
+			if (choice == 1)
+			{
+				System.out.print("\nEnter the source of income: ");
+				String incomeSource = input.nextLine();
 
-		System.out.print("Enter income frequency: ");
-		int incomeFreq = input.nextInt();
-		input.nextLine();
+				System.out.print("Enter income amount: ");
+				double incomeAmount = input.nextDouble();
 
-		Wage w = new Wage(incomeSource, incomeAmount, incomeFreq);
-		app.addMonthlyIncome(w);
+				System.out.println("Enter income frequency for the year: ");
+				int incomeFreq = input.nextInt();
+				input.nextLine();
 
-		// Expense stuff
+				Wage w = new Wage(incomeSource, incomeAmount, incomeFreq);
+				app.addMonthlyIncome(w);
 
-		System.out.print("Enter expense source: ");
-		String expenseSource = input.nextLine();
+			}
+			else if (choice == 2)
+			{
+				System.out.print("\nEnter expense source: ");
+				String expenseSource = input.nextLine();
 
-		System.out.print("Enter expense amount: ");
-		double expenseAmount = input.nextDouble();
+				System.out.print("Enter expense amount: ");
+				double expenseAmount = input.nextDouble();
 
-		System.out.print("Enter expense frequency: ");
-		int expenseFreq = input.nextInt();
+				System.out.println("Enter expense frequency for the year: ");
+				int expenseFreq = input.nextInt();
 
-		Expense ex = new Expense(expenseSource, expenseAmount, expenseFreq);
-		app.addExpense(ex);
+				Expense ex = new Expense(expenseSource, expenseAmount, expenseFreq);
+				app.addExpense(ex);
 
-		// test print the report
-		
-		System.out.println("\n--- INCOME REPORT ---");
-		app.PrintIncomereport();
+			}
+			else if (choice == 3)
+			{
+				app.PrintIncomereport();
+				app.PrintExpensereport();
+			}
+			else if (choice == 4)
+			{
+				break;
+			}
 
-		System.out.println("\n--- EXPENSE REPORT ---");
-		app.PrintExpensereport();
+		}
 	}
 
 	@Override
