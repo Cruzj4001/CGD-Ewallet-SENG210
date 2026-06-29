@@ -29,7 +29,8 @@ public class EWalletApp implements Expenser
 			System.out.println("3. View Reports");
 			System.out.println("4. When Can I Buy This?");
 			System.out.println("5. Convert Currency");
-			System.out.println("6. Exit");
+			System.out.println("6. Export Report");
+			System.out.println("7. Exit");
 			System.out.print("Choose an option: ");
 
 			int choice = input.nextInt();
@@ -133,8 +134,16 @@ public class EWalletApp implements Expenser
 			}
 			else if (choice == 6)
 			{
-				break;
+				System.out.print("\nEnter report file name: ");
+				String reportTitle = input.nextLine();
+
+				app.exportReport(reportTitle);
 			}
+			else if (choice == 7)
+			{
+				break;
+
+		}
 
 		}
 
@@ -278,10 +287,34 @@ public class EWalletApp implements Expenser
 	}
 
 	@Override
-	public void exportReport(String reportTitle) {
-		throw new UnsupportedOperationException("Unimplemented method 'exportReport'");
-	}
+	public void exportReport(String reportTitle)
+	{	
+   		try
+    		{
 
+        java.io.PrintWriter writer = new java.io.PrintWriter(reportTitle + ".csv");
+
+        writer.println("Type,Source,Amount,Frequency");
+
+        for (Wage wage : incomes)
+        {
+            writer.println("Income," + wage.source + "," + wage.amount + "," + wage.Month);
+        }
+
+        for (Expense expense : expenses)
+        {
+            writer.println("Expense," + expense.source + "," + expense.amount + "," + expense.yearlyfrequency);
+        }
+
+        writer.close();
+
+        System.out.println("Report exported successfully to " + reportTitle + ".csv");
+    }
+    catch (Exception e)
+    {
+        System.out.println("Error exporting report: " + e.getMessage());
+    }
+}
 	@Override
 	public Currency convertForeignCurrency(Currency C, double amount)
 	{
