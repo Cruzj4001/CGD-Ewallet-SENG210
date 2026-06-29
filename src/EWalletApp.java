@@ -11,6 +11,8 @@ public class EWalletApp implements Expenser
 	private ArrayList<Wage> incomes = new ArrayList<>();
     private ArrayList<Expense> expenses = new ArrayList<>();
 
+	private double monthlySavings;
+
 	public void CreateUser(String username, String password) 
 	{
 		
@@ -21,66 +23,72 @@ public class EWalletApp implements Expenser
 		EWalletApp app = new EWalletApp();
 		Scanner input = new Scanner(System.in);
 
-		boolean running = true;
-
 		System.out.println("Welcome to your Ewallet!");
 
-		while (running)
+		while (true)
 		{
 			System.out.println("\n---- MENU ----");
 			System.out.println("1. Add Income");
 			System.out.println("2. Add Expense");
 			System.out.println("3. View Reports");
-			System.out.println("4. Exit");
+			System.out.println("4. When Can I Buy This?");
+			System.out.println("5. Exit");
 			System.out.print("Choose an option: ");
 
 			int choice = input.nextInt();
-			input.nextLine(); // clear buffer
+			input.nextLine();
 
-			switch (choice)
+			if (choice == 1)
 			{
-				case 1:
-					System.out.print("\nEnter the source of income: ");
-					String incomeSource = input.nextLine();
+				System.out.print("\nEnter the source of income: ");
+				String incomeSource = input.nextLine();
 
-					System.out.print("Enter income amount: ");
-					double incomeAmount = input.nextDouble();
+				System.out.print("Enter income amount: ");
+				double incomeAmount = input.nextDouble();
 
-					System.out.print("Enter income frequency for the year: ");
-					int incomeFreq = input.nextInt();
-					input.nextLine();
+				System.out.print("Enter income frequency for the year: ");
+				int incomeFreq = input.nextInt();
+				input.nextLine();
 
-					Wage w = new Wage(incomeSource, incomeAmount, incomeFreq);
-					app.addMonthlyIncome(w);
-					break;
+				Wage w = new Wage(incomeSource, incomeAmount, incomeFreq);
+				app.addMonthlyIncome(w);
+			}
+			else if (choice == 2)
+			{
+				System.out.print("\nEnter expense source: ");
+				String expenseSource = input.nextLine();
 
-				case 2:
-					System.out.print("\nEnter expense source: ");
-					String expenseSource = input.nextLine();
+				System.out.print("Enter expense amount: ");
+				double expenseAmount = input.nextDouble();
 
-					System.out.print("Enter expense amount: ");
-					double expenseAmount = input.nextDouble();
+				System.out.print("Enter expense frequency for the year: ");
+				int expenseFreq = input.nextInt();
+				input.nextLine();
 
-					System.out.print("Enter expense frequency for the year: ");
-					int expenseFreq = input.nextInt();
-					input.nextLine();
+				Expense ex = new Expense(expenseSource, expenseAmount, expenseFreq);
+				app.addExpense(ex);
+			}
+			else if (choice == 3)
+			{
+				app.PrintIncomereport();
+				app.PrintExpensereport();
+			}
+			else if (choice == 4)
+			{
+				app.updateMonthlySavings();
 
-					Expense ex = new Expense(expenseSource, expenseAmount, expenseFreq);
-					app.addExpense(ex);
-					break;
+				System.out.print("Enter item name: ");
+				String itemName = input.nextLine();
 
-				case 3:
-					app.PrintIncomereport();
-					app.PrintExpensereport();
-					break;
+				System.out.print("Enter item price: ");
+				double price = input.nextDouble();
+				input.nextLine();
 
-				case 4:
-					running = false;
-					System.out.println("Goodbye!");
-					break;
-
-				default:
-					System.out.println("Invalid option. Try again.");
+				app.whenCanIBuy(itemName, price);
+			}
+			else if (choice == 5)
+			{
+				break;
 			}
 		}
 
@@ -197,15 +205,41 @@ public class EWalletApp implements Expenser
 	}
 
 	@Override
-	public int whenCanIBuy(String itemname, double price) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'whenCanIBuy'");
+	public int whenCanIBuy(String itemname, double price)
+	{
+		if (monthlySavings <= 0)
+		{
+			System.out.println("You are not currently saving money each month.");
+			return -1;
+		}
+
+		int months = (int) Math.ceil(price / monthlySavings);
+
+		System.out.println("Item: " + itemname);
+		System.out.println("Estimated months to buy: " + months);
+
+		return months;
 	}
 
 	@Override
-	public void updateMonthlySavings() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'updateMonthlySavings'");
+	public void updateMonthlySavings()
+	{
+		double totalIncome = 0;
+		double totalExpenses = 0;
+
+		for (Wage w : incomes)
+		{
+			totalIncome += w.amount;
+		}
+
+		for (Expense e : expenses)
+		{
+			totalExpenses += e.amount;
+		}
+
+		monthlySavings = totalIncome - totalExpenses;
+
+		System.out.println("Monthly savings updated: $" + monthlySavings);
 	}
 	
 }
