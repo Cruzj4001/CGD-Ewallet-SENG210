@@ -4,12 +4,8 @@ import java.util.Scanner;
 public class EWalletApp implements Expenser
 {
 
-	//this is the app class, has the GUI and create one object of your expense calculator class. The expense calculator class is the implementation of the Expenser interface 
-	
-	private ArrayList<User> AllData;
-
 	private ArrayList<Wage> incomes = new ArrayList<>();
-    private ArrayList<Expense> expenses = new ArrayList<>();
+	private ArrayList<Expense> expenses = new ArrayList<>();
 
 	private double monthlySavings;
 
@@ -77,12 +73,14 @@ public class EWalletApp implements Expenser
 			{
 				app.updateMonthlySavings();
 
-				System.out.print("Enter item name: ");
+				System.out.print("\nEnter item name: ");
 				String itemName = input.nextLine();
 
 				System.out.print("Enter item price: ");
 				double price = input.nextDouble();
 				input.nextLine();
+
+				System.out.println(" ");
 
 				app.whenCanIBuy(itemName, price);
 			}
@@ -98,13 +96,13 @@ public class EWalletApp implements Expenser
 	@Override
 	public void addMonthlyIncome(Wage W) 
 	{
-   		incomes.add(W);
+		incomes.add(W);
 	}
 
 	@Override
 	public void addExpense(Expense Ex) 
 	{
-   		expenses.add(Ex);
+		expenses.add(Ex);
 	}
 
 	@Override
@@ -117,23 +115,23 @@ public class EWalletApp implements Expenser
 		}
 
 		double totalIncome = 0;
-		
+
 		System.out.println("\n===== INCOME REPORT =====");
 
 		for (Wage wage : incomes)
 		{
 			System.out.println(
-                "Source: " + wage.source +
-                " | Amount: $" + wage.amount +
-                " | Month: " + wage.Month);
+				"Source: " + wage.source +
+				" | Amount: $" + wage.amount +
+				" | Month: " + wage.Month);
 
 			totalIncome += wage.amount;
 		}
 
-    	System.out.println("  ");
-    	System.out.println("Total Income: $" + totalIncome);
+		System.out.println();
+		System.out.println("Total Income: $" + totalIncome);
 	}
-  
+
 	@Override
 	public void PrintExpensereport()
 	{
@@ -150,57 +148,49 @@ public class EWalletApp implements Expenser
 		for (Expense expense : expenses)
 		{
 			System.out.println(
-					"Source: " + expense.source +
-					" | Amount: $" + expense.amount +
-					" | Frequency: " + expense.yearlyfrequency);
+				"Source: " + expense.source +
+				" | Amount: $" + expense.amount +
+				" | Frequency: " + expense.yearlyfrequency);
 
 			totalExpenses += expense.amount;
 		}
 
-		System.out.println(" ");
+		System.out.println();
 		System.out.println("Total Expenses: $" + totalExpenses);
-		
 	}
 
 	@Override
 	public void PrintFullreport() {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'PrintFullreport'");
 	}
 
 	@Override
 	public void PrintIncomereportbyTpe() {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'PrintIncomereportbyTpe'");
 	}
 
 	@Override
 	public void PrintExpensebyType() {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'PrintExpensebyType'");
 	}
 
 	@Override
 	public void exportReport(String reportTitle) {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'exportReport'");
 	}
 
 	@Override
 	public Currency convertForeignCurrency(Currency C, double amount) {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'convertForeignCurrency'");
 	}
 
 	@Override
 	public boolean loadExpenseFile(String filePath) {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'loadExpenseFile'");
 	}
 
 	@Override
 	public boolean loadIncomeFile(String filePath) {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'loadIncomeFile'");
 	}
 
@@ -209,7 +199,7 @@ public class EWalletApp implements Expenser
 	{
 		if (monthlySavings <= 0)
 		{
-			System.out.println("You are not currently saving money each month.");
+			System.out.println("\nYou are not currently saving money each month.");
 			return -1;
 		}
 
@@ -224,22 +214,28 @@ public class EWalletApp implements Expenser
 	@Override
 	public void updateMonthlySavings()
 	{
-		double totalIncome = 0;
-		double totalExpenses = 0;
+		double totalMonthlyIncome = 0;
+		double totalMonthlyExpenses = 0;
 
 		for (Wage w : incomes)
 		{
-			totalIncome += w.amount;
+			double yearlyIncome = w.amount * w.Month;
+			double monthlyIncome = yearlyIncome / 12.0;
+
+			totalMonthlyIncome += monthlyIncome;
 		}
 
 		for (Expense e : expenses)
 		{
-			totalExpenses += e.amount;
+			double yearlyExpense = e.amount * e.yearlyfrequency;
+			double monthlyExpense = yearlyExpense / 12.0;
+
+			totalMonthlyExpenses += monthlyExpense;
 		}
 
-		monthlySavings = totalIncome - totalExpenses;
+		monthlySavings = totalMonthlyIncome - totalMonthlyExpenses;
 
-		System.out.println("Monthly savings updated: $" + monthlySavings);
+		System.out.println("\nMonthly savings updated: $" + monthlySavings);
 	}
-	
+
 }
