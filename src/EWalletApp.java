@@ -67,8 +67,31 @@ public class EWalletApp implements Expenser
 			}
 			else if (choice == 3)
 			{
-				app.PrintIncomereport();
-				app.PrintExpensereport();
+				System.out.println("\n---- REPORT MENU ----");
+    				System.out.println("1. Income Report");
+    				System.out.println("2. Expense Report");
+    				System.out.println("3. Detailed Finance Report");
+    				System.out.print("Choose a report: ");
+
+    				int reportChoice = input.nextInt();
+    				input.nextLine();
+
+    				if (reportChoice == 1)
+    				{
+       					app.PrintIncomereport();
+    				}
+    				else if (reportChoice == 2)
+    				{
+        				app.PrintExpensereport();
+    				}
+    				else if (reportChoice == 3)
+    				{
+        				app.PrintFullreport();
+    				}
+    				else
+    				{
+        				System.out.println("Invalid report option.");
+    				}
 			}
 			else if (choice == 4)
 			{
@@ -185,8 +208,63 @@ public class EWalletApp implements Expenser
 	}
 
 	@Override
-	public void PrintFullreport() {
-		throw new UnsupportedOperationException("Unimplemented method 'PrintFullreport'");
+	public void PrintFullreport()
+	{
+   		double totalIncome = 0;
+   		double totalExpenses = 0;
+
+    		System.out.println("\n===== DETAILED FINANCE REPORT =====");
+
+   		System.out.println("\n--- Income Entries ---");
+    		if (incomes.isEmpty())
+    		{
+        		System.out.println("No income data exists.");
+    		}
+    		else
+    		{
+        		for (Wage wage : incomes)
+        		{
+           			System.out.println(
+                   	 		"Source: " + wage.source +
+                    			" | Amount: $" + wage.amount +
+                    			" | Frequency: " + wage.Month);
+
+            			totalIncome += wage.amount;
+       			}
+   		}
+
+    		System.out.println("\n--- Expense Entries ---");
+    		if (expenses.isEmpty())
+    		{
+        		System.out.println("No expense data exists.");
+   		}
+    		else
+    		{
+        		for (Expense expense : expenses)
+        		{
+            			System.out.println(
+                    			"Source: " + expense.source +
+                    			" | Amount: $" + expense.amount +
+                    			" | Frequency: " + expense.yearlyfrequency);
+
+            			totalExpenses += expense.amount;
+        		}
+    		}
+
+    		double savings = totalIncome - totalExpenses;
+
+    		System.out.println("\n--- Summary ---");
+    		System.out.println("Total Income: $" + totalIncome);
+    		System.out.println("Total Expenses: $" + totalExpenses);
+		
+    		if (savings >= 0)
+    		{
+        		System.out.println("Total Savings: $" + savings);
+    		}
+    		else
+   		{
+        		System.out.println("Total New Debt: $" + Math.abs(savings));
+    		}
 	}
 
 	@Override
