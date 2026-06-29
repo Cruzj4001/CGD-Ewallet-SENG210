@@ -18,65 +18,73 @@ public class EWalletApp implements Expenser
 
 	public static void main(String[] args)
 	{
-
 		EWalletApp app = new EWalletApp();
 		Scanner input = new Scanner(System.in);
 
+		boolean running = true;
+
 		System.out.println("Welcome to your Ewallet!");
 
-		while (true)
+		while (running)
 		{
 			System.out.println("\n---- MENU ----");
 			System.out.println("1. Add Income");
 			System.out.println("2. Add Expense");
 			System.out.println("3. View Reports");
 			System.out.println("4. Exit");
+			System.out.print("Choose an option: ");
 
 			int choice = input.nextInt();
-			input.nextLine();
+			input.nextLine(); // clear buffer
 
-			if (choice == 1)
+			switch (choice)
 			{
-				System.out.print("\nEnter the source of income: ");
-				String incomeSource = input.nextLine();
+				case 1:
+					System.out.print("\nEnter the source of income: ");
+					String incomeSource = input.nextLine();
 
-				System.out.print("Enter income amount: ");
-				double incomeAmount = input.nextDouble();
+					System.out.print("Enter income amount: ");
+					double incomeAmount = input.nextDouble();
 
-				System.out.println("Enter income frequency for the year: ");
-				int incomeFreq = input.nextInt();
-				input.nextLine();
+					System.out.print("Enter income frequency for the year: ");
+					int incomeFreq = input.nextInt();
+					input.nextLine();
 
-				Wage w = new Wage(incomeSource, incomeAmount, incomeFreq);
-				app.addMonthlyIncome(w);
+					Wage w = new Wage(incomeSource, incomeAmount, incomeFreq);
+					app.addMonthlyIncome(w);
+					break;
 
+				case 2:
+					System.out.print("\nEnter expense source: ");
+					String expenseSource = input.nextLine();
+
+					System.out.print("Enter expense amount: ");
+					double expenseAmount = input.nextDouble();
+
+					System.out.print("Enter expense frequency for the year: ");
+					int expenseFreq = input.nextInt();
+					input.nextLine();
+
+					Expense ex = new Expense(expenseSource, expenseAmount, expenseFreq);
+					app.addExpense(ex);
+					break;
+
+				case 3:
+					app.PrintIncomereport();
+					app.PrintExpensereport();
+					break;
+
+				case 4:
+					running = false;
+					System.out.println("Goodbye!");
+					break;
+
+				default:
+					System.out.println("Invalid option. Try again.");
 			}
-			else if (choice == 2)
-			{
-				System.out.print("\nEnter expense source: ");
-				String expenseSource = input.nextLine();
-
-				System.out.print("Enter expense amount: ");
-				double expenseAmount = input.nextDouble();
-
-				System.out.println("Enter expense frequency for the year: ");
-				int expenseFreq = input.nextInt();
-
-				Expense ex = new Expense(expenseSource, expenseAmount, expenseFreq);
-				app.addExpense(ex);
-
-			}
-			else if (choice == 3)
-			{
-				app.PrintIncomereport();
-				app.PrintExpensereport();
-			}
-			else if (choice == 4)
-			{
-				break;
-			}
-
 		}
+
+		input.close();
 	}
 
 	@Override
@@ -102,7 +110,7 @@ public class EWalletApp implements Expenser
 
 		double totalIncome = 0;
 		
-		System.out.println("===== INCOME REPORT =====");
+		System.out.println("\n===== INCOME REPORT =====");
 
 		for (Wage wage : incomes)
 		{
@@ -114,7 +122,7 @@ public class EWalletApp implements Expenser
 			totalIncome += wage.amount;
 		}
 
-    	System.out.println("-------------------------");
+    	System.out.println("  ");
     	System.out.println("Total Income: $" + totalIncome);
 	}
   
@@ -129,7 +137,7 @@ public class EWalletApp implements Expenser
 
 		double totalExpenses = 0;
 
-		System.out.println("===== EXPENSE REPORT =====");
+		System.out.println("\n===== EXPENSE REPORT =====");
 
 		for (Expense expense : expenses)
 		{
@@ -141,7 +149,7 @@ public class EWalletApp implements Expenser
 			totalExpenses += expense.amount;
 		}
 
-		System.out.println("--------------------------");
+		System.out.println(" ");
 		System.out.println("Total Expenses: $" + totalExpenses);
 		
 	}
