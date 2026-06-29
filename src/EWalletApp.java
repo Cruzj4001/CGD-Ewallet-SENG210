@@ -28,7 +28,8 @@ public class EWalletApp implements Expenser
 			System.out.println("2. Add Expense");
 			System.out.println("3. View Reports");
 			System.out.println("4. When Can I Buy This?");
-			System.out.println("5. Exit");
+			System.out.println("5. Convert Currency");
+			System.out.println("6. Exit");
 			System.out.print("Choose an option: ");
 
 			int choice = input.nextInt();
@@ -86,8 +87,32 @@ public class EWalletApp implements Expenser
 			}
 			else if (choice == 5)
 			{
+				System.out.print("\nEnter amount in base currency: ");
+				double amount = input.nextDouble();
+				input.nextLine();
+
+				System.out.print("Enter target currency (ex. EUR): ");
+				String currencyName = input.nextLine();
+
+				System.out.print("Enter exchange rate (1 USD = ? " + currencyName + "): ");
+				double rate = input.nextDouble();
+				input.nextLine();
+
+				Currency c = new Currency();
+				c.name = currencyName;
+				c.rate = rate;
+
+				Currency result = app.convertForeignCurrency(c, amount);
+
+				System.out.println("\n===== CURRENCY CONVERSION =====");
+				System.out.println("Base Amount: $" + amount + " USD");
+				System.out.println("Converted Amount: " + result.rate + " " + result.name);
+			}
+			else if (choice == 6)
+			{
 				break;
 			}
+
 		}
 
 		input.close();
@@ -180,8 +205,14 @@ public class EWalletApp implements Expenser
 	}
 
 	@Override
-	public Currency convertForeignCurrency(Currency C, double amount) {
-		throw new UnsupportedOperationException("Unimplemented method 'convertForeignCurrency'");
+	public Currency convertForeignCurrency(Currency C, double amount)
+	{
+		Currency converted = new Currency();
+
+		converted.name = C.name;
+		converted.rate = amount * C.rate;
+
+		return converted;
 	}
 
 	@Override
