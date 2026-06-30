@@ -112,7 +112,6 @@ public class EWalletApp implements Expenser
 			{
 				break;
 			}
-
 		}
 
 		input.close();
@@ -145,16 +144,18 @@ public class EWalletApp implements Expenser
 
 		for (Wage wage : incomes)
 		{
+			double yearlyIncome = wage.amount * wage.Month;
+
 			System.out.println(
 				"Source: " + wage.source +
 				" | Amount: $" + wage.amount +
-				" | Month: " + wage.Month);
+				" | Frequency: " + wage.Month +
+				" | Yearly: $" + yearlyIncome);
 
-			totalIncome += wage.amount;
+			totalIncome += yearlyIncome;
 		}
 
-		System.out.println();
-		System.out.println("Total Income: $" + totalIncome);
+		System.out.println("\nTotal Income (Yearly): $" + totalIncome);
 	}
 
 	@Override
@@ -172,16 +173,18 @@ public class EWalletApp implements Expenser
 
 		for (Expense expense : expenses)
 		{
+			double yearlyExpense = expense.amount * expense.yearlyfrequency;
+
 			System.out.println(
 				"Source: " + expense.source +
 				" | Amount: $" + expense.amount +
-				" | Frequency: " + expense.yearlyfrequency);
+				" | Frequency: " + expense.yearlyfrequency +
+				" | Yearly: $" + yearlyExpense);
 
-			totalExpenses += expense.amount;
+			totalExpenses += yearlyExpense;
 		}
 
-		System.out.println();
-		System.out.println("Total Expenses: $" + totalExpenses);
+		System.out.println("\nTotal Expenses (Yearly): $" + totalExpenses);
 	}
 
 	@Override
@@ -251,22 +254,17 @@ public class EWalletApp implements Expenser
 		for (Wage w : incomes)
 		{
 			double yearlyIncome = w.amount * w.Month;
-			double monthlyIncome = yearlyIncome / 12.0;
-
-			totalMonthlyIncome += monthlyIncome;
+			totalMonthlyIncome += yearlyIncome / 12.0;
 		}
 
 		for (Expense e : expenses)
 		{
 			double yearlyExpense = e.amount * e.yearlyfrequency;
-			double monthlyExpense = yearlyExpense / 12.0;
-
-			totalMonthlyExpenses += monthlyExpense;
+			totalMonthlyExpenses += yearlyExpense / 12.0;
 		}
 
 		monthlySavings = totalMonthlyIncome - totalMonthlyExpenses;
 
 		System.out.println("\nMonthly savings updated: $" + monthlySavings);
 	}
-
 }
