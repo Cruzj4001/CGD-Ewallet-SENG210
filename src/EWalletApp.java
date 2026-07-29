@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class EWalletApp implements Expenser
 {
 
@@ -9,16 +10,11 @@ public class EWalletApp implements Expenser
 
 	private double monthlySavings;
 
-	public void CreateUser(String username, String password) 
-	{
-		
-	}
-
 	public static void main(String[] args)
 	{
 		EWalletApp app = new EWalletApp();
 		Scanner input = new Scanner(System.in);
-
+		User appUser  = new User("Username", "Password");
 		System.out.println("Welcome to your Ewallet!");
 
 		while (true)
@@ -53,18 +49,7 @@ public class EWalletApp implements Expenser
 			}
 			else if (choice == 2)
 			{
-				System.out.print("\nEnter expense source: ");
-				String expenseSource = input.nextLine();
-
-				System.out.print("Enter expense amount: ");
-				double expenseAmount = input.nextDouble();
-
-				System.out.print("Enter expense frequency for the year: ");
-				int expenseFreq = input.nextInt();
-				input.nextLine();
-
-				Expense ex = new Expense(expenseSource, expenseAmount, expenseFreq);
-				app.addExpense(ex);
+				AddExpense addExpenseWindow = new AddExpense(appUser);
 			}
 			else if (choice == 3)
 			{
@@ -154,12 +139,6 @@ public class EWalletApp implements Expenser
 	public void addMonthlyIncome(Wage W) 
 	{
 		incomes.add(W);
-	}
-
-	@Override
-	public void addExpense(Expense Ex) 
-	{
-		expenses.add(Ex);
 	}
 
 	@Override

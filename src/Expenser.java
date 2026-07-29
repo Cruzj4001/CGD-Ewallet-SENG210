@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public interface Expenser {
 public User userAtHand= null;
 	// As a user I'd like to add a monthly expense so I can track and report my expenses - 3pts
-	public void addExpense (Expense Ex); 
+	public void AddExpense (User u); 
 	// As a user I'd like to add a monthly income so I can track and report my income all year - 3pts
 	public void addMonthlyIncome (Wage W);
 	//As  a user I would like to view a detailed report of all expenses, income, and summary information 
