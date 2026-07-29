@@ -34,18 +34,7 @@ public class EWalletApp implements Expenser
 
 			if (choice == 1)
 			{
-				System.out.print("\nEnter the source of income: ");
-				String incomeSource = input.nextLine();
-
-				System.out.print("Enter income amount: ");
-				double incomeAmount = input.nextDouble();
-
-				System.out.print("Enter income frequency for the year: ");
-				int incomeFreq = input.nextInt();
-				input.nextLine();
-
-				Wage w = new Wage(incomeSource, incomeAmount, incomeFreq);
-				app.addMonthlyIncome(w);
+				AddMonthlyIncome addIncomeWindow = new AddMonthlyIncome(appUser);
 			}
 			else if (choice == 2)
 			{

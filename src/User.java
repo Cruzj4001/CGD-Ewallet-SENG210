@@ -21,4 +21,8 @@ public class User {
 	public void addSpending(Expense e) {
 		Spending.add(e);
 	}
+	
+	public void addIncome(Wage w) {
+		Income.add(w);
+	}
 }
