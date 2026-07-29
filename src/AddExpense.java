@@ -63,7 +63,7 @@ public class AddExpense extends JFrame implements ActionListener{
 		setMinimumSize(new Dimension(275, 300));
 		setFont(new Font("8-bit Operator+", Font.PLAIN, 12));
 		setTitle("Add Expense");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 318, 192);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(212, 208, 200));

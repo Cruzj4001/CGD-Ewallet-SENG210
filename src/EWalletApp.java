@@ -57,7 +57,7 @@ public class EWalletApp implements Expenser
     				}
     				else if (reportChoice == 2)
     				{
-        				app.PrintExpensereport();
+    					PrintExpenseReport printExpenseReportWindow = new PrintExpenseReport(appUser);
     				}
     				else if (reportChoice == 3)
     				{
@@ -157,35 +157,6 @@ public class EWalletApp implements Expenser
 		}
 
 		System.out.println("\nTotal Income (Yearly): $" + totalIncome);
-	}
-
-	@Override
-	public void PrintExpensereport()
-	{
-		if (expenses.isEmpty())
-		{
-			System.out.println("No expense data exists.");
-			return;
-		}
-
-		double totalExpenses = 0;
-
-		System.out.println("\n===== EXPENSE REPORT =====");
-
-		for (Expense expense : expenses)
-		{
-			double yearlyExpense = expense.amount * expense.yearlyfrequency;
-
-			System.out.println(
-				"Source: " + expense.source +
-				" | Amount: $" + expense.amount +
-				" | Frequency: " + expense.yearlyfrequency +
-				" | Yearly: $" + yearlyExpense);
-
-			totalExpenses += yearlyExpense;
-		}
-
-		System.out.println("\nTotal Expenses (Yearly): $" + totalExpenses);
 	}
 
 	@Override
@@ -346,5 +317,17 @@ public class EWalletApp implements Expenser
 		monthlySavings = totalMonthlyIncome - totalMonthlyExpenses;
 
 		System.out.println("\nMonthly savings updated: $" + monthlySavings);
+	}
+
+	@Override
+	public void AddExpense(User u) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void PrintExpensereport() {
+		// TODO Auto-generated method stub
+		
 	}
 }

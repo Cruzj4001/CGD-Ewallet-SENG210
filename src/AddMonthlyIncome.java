@@ -27,8 +27,6 @@ import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
 public class AddMonthlyIncome extends JFrame implements ActionListener{
-	public AddMonthlyIncome() {
-	}
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -42,7 +40,7 @@ public class AddMonthlyIncome extends JFrame implements ActionListener{
 	
 	User user;
 	
-
+	/* for testing
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -55,7 +53,7 @@ public class AddMonthlyIncome extends JFrame implements ActionListener{
 			}
 		});
 	}
-	
+	*/
 
 	/**
 	 * Create the frame.
@@ -65,7 +63,7 @@ public class AddMonthlyIncome extends JFrame implements ActionListener{
 		setMinimumSize(new Dimension(275, 300));
 		setFont(new Font("8-bit Operator+", Font.PLAIN, 12));
 		setTitle("Add Expense");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 318, 192);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(212, 208, 200));

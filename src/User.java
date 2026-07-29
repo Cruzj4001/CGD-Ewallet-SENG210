@@ -18,11 +18,23 @@ public class User {
 		currencyRates = new ArrayList<Currency>();
 	}
 	
+	//adds expense to end of spending
 	public void addSpending(Expense e) {
 		Spending.add(e);
 	}
 	
+	//adds wage to end of income
 	public void addIncome(Wage w) {
 		Income.add(w);
+	}
+	
+	//gets spending array
+	public ArrayList <Expense> getSpending() {
+		return Spending;
+	}
+	
+	//gets income array
+	public ArrayList<Wage> getIncome() {
+		return Income;
 	}
 }
