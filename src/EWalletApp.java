@@ -53,7 +53,7 @@ public class EWalletApp implements Expenser
 
     				if (reportChoice == 1)
     				{
-       					app.PrintIncomereport();
+    					PrintIncomeReport printExpenseReportWindow = new PrintIncomeReport(appUser);
     				}
     				else if (reportChoice == 2)
     				{
