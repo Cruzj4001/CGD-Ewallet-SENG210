@@ -15,11 +15,11 @@ public User userAtHand= null;
 	//As  a user I would like to view a detailed report of all income, and summary information for income
 	public void PrintIncomereport();
 	//As  a user I would like to view a detailed report of income of a certain type, and summary information for income
-	public void PrintIncomereportbyTpe();
+	//public void PrintIncomereportbyTpe();
 	//As  a user I would like to view a detailed report of expense of a certain type , and summary information for expenses
-	public void PrintExpensebyType();
+	//public void PrintExpensebyType();
 	// As a user I would like to choose a report and export it as an external file (any type is fine preferences are csv or JSON)
-	public void exportReport(String reportTitle);
+	//public void exportReport(String reportTitle);
 	//	As a user I would like to view my current balance in a different currency 
 	//Bonus : try to use the same convert function to convert from foreign currency to USD 
 	public Currency convertForeignCurrency(Currency C, double amount);

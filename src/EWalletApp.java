@@ -61,7 +61,7 @@ public class EWalletApp implements Expenser
     				}
     				else if (reportChoice == 3)
     				{
-        				app.PrintFullreport();
+        				PrintFullReport printFullReportWindow = new PrintFullReport(appUser);
     				}
     				else
     				{
@@ -111,7 +111,7 @@ public class EWalletApp implements Expenser
 				System.out.print("\nEnter report file name: ");
 				String reportTitle = input.nextLine();
 
-				app.exportReport(reportTitle);
+				//app.exportReport(reportTitle);
 			}
 			else if (choice == 7)
 			{
@@ -219,18 +219,18 @@ public class EWalletApp implements Expenser
     		}
 	}
 
-	@Override
-	public void PrintIncomereportbyTpe() {
-		throw new UnsupportedOperationException("Unimplemented method 'PrintIncomereportbyTpe'");
-	}
+	
+	//public void PrintIncomereportbyTpe() {
+		//throw new UnsupportedOperationException("Unimplemented method 'PrintIncomereportbyTpe'");
+	//}
 
-	@Override
-	public void PrintExpensebyType() {
-		throw new UnsupportedOperationException("Unimplemented method 'PrintExpensebyType'");
-	}
+	
+	//public void PrintExpensebyType() {
+		//throw new UnsupportedOperationException("Unimplemented method 'PrintExpensebyType'");
+	//}
 
-	@Override
-	public void exportReport(String reportTitle)
+	
+	/*public void exportReport(String reportTitle)
 	{	
    		try
     		{
@@ -258,6 +258,7 @@ public class EWalletApp implements Expenser
         System.out.println("Error exporting report: " + e.getMessage());
     }
 }
+*/
 	@Override
 	public Currency convertForeignCurrency(Currency C, double amount)
 	{

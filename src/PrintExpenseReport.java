@@ -187,6 +187,7 @@ public class PrintExpenseReport extends JFrame implements ActionListener{
 		summaryPanel.add(expenseScrollPane);
 		
 		expenseText = new JTextArea(summaryString);
+		expenseText.setEditable(false);
 		expenseScrollPane.setViewportView(expenseText);
 		
 		JPanel totalPanel = new JPanel();
