@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 
 public class EWalletApp implements Expenser
 {
@@ -70,18 +72,12 @@ public class EWalletApp implements Expenser
 			}
 			else if (choice == 4)
 			{
-				app.updateMonthlySavings();
-
-				System.out.print("\nEnter item name: ");
-				String itemName = input.nextLine();
-
-				System.out.print("Enter item price: ");
-				double price = input.nextDouble();
-				input.nextLine();
-
-				System.out.println(" ");
-
-				app.whenCanIBuy(itemName, price);
+				if (appUser.monthlysavings > 0) {
+					whenCanIBuy whenCanIBuyWindow = new whenCanIBuy(appUser);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "You are not currently saving money each month.");
+				}
 			}
 			else if (choice == 5)
 			{
@@ -297,28 +293,7 @@ public class EWalletApp implements Expenser
 		return months;
 	}
 
-	@Override
-	public void updateMonthlySavings()
-	{
-		double totalMonthlyIncome = 0;
-		double totalMonthlyExpenses = 0;
-
-		for (Wage w : incomes)
-		{
-			double yearlyIncome = w.amount * w.Month;
-			totalMonthlyIncome += yearlyIncome / 12.0;
-		}
-
-		for (Expense e : expenses)
-		{
-			double yearlyExpense = e.amount * e.yearlyfrequency;
-			totalMonthlyExpenses += yearlyExpense / 12.0;
-		}
-
-		monthlySavings = totalMonthlyIncome - totalMonthlyExpenses;
-
-		System.out.println("\nMonthly savings updated: $" + monthlySavings);
-	}
+	
 
 	@Override
 	public void AddExpense(User u) {
@@ -331,4 +306,6 @@ public class EWalletApp implements Expenser
 		// TODO Auto-generated method stub
 		
 	}
+
+
 }

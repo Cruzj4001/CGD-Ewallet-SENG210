@@ -30,7 +30,21 @@ public User userAtHand= null;
 	// As a user I would like to provide an item and a price and get an estimate in number of months needed to save up to buy this item. (based on current monthly saving. 
 	public int whenCanIBuy(String itemname,double  price);
 	// updates monthly savings based on latest added income and expenses. This is an internal function not called by the users.  Bonus: what is the most efficient way to call it (when?)? 
-	public void updateMonthlySavings(); 
+	public static void updateMonthlySavings(User u) {
+			double totalMonthlyIncome = 0;
+			double totalMonthlyExpenses = 0;
+			totalMonthlyIncome = u.getIncome().get(u.getIncome().size()-1).amount;
+
+			for (Expense e : u.getSpending())
+			{
+				double yearlyExpense = e.amount * e.yearlyfrequency;
+				totalMonthlyExpenses += yearlyExpense / 12.0;
+			}
+
+			u.monthlysavings = totalMonthlyIncome - totalMonthlyExpenses;
+
+			//System.out.println("\nMonthly savings updated: $" + u.monthlysavings);
+	}
 	
 	
 }

@@ -186,6 +186,7 @@ public class AddMonthlyIncome extends JFrame implements ActionListener{
 		double amount    = (double) amountSpinner.getValue();
 		int    month     = monthCombo.getSelectedIndex();
 		user.addIncome(new Wage(source, amount, month));
+		Expenser.updateMonthlySavings(user);
 		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING)); //close window
 		return;
 	}

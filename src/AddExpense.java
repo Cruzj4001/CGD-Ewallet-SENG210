@@ -188,6 +188,7 @@ public class AddExpense extends JFrame implements ActionListener{
 				break;
 		}
 		user.addSpending(new Expense(source, amount, frequency));
+		Expenser.updateMonthlySavings(user);
 		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING)); //close window
 		return;
 	}
