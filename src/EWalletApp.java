@@ -29,6 +29,7 @@ public class EWalletApp implements Expenser
 			System.out.println("5. Convert Currency");
 			System.out.println("6. Export Report");
 			System.out.println("7. Exit");
+			System.out.println("8. Import");
 			System.out.print("Choose an option: ");
 
 			int choice = input.nextInt();
@@ -114,6 +115,9 @@ public class EWalletApp implements Expenser
 				break;
 
 		}
+			else if (choice == 8) {
+				loadFile loadFileWindow = new loadFile(appUser);
+			}
 
 		}
 
