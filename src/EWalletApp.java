@@ -259,13 +259,37 @@ public class EWalletApp implements Expenser
     }
 }
 */
-	@Override
+	//I had created my own class for this feature below- BF
+	
+	@Override 
 	public Currency convertForeignCurrency(Currency C, double amount)
 	{
 		Currency converted = new Currency();
 
+		CurrencyConversion converter = new CurrencyConversion();
+
+		String choice = "";
+
+		if (C.name.equalsIgnoreCase("JPY"))
+		{
+			choice = "USDOLLAR TO JPYEN";
+		}
+		else if (C.name.equalsIgnoreCase("EUR"))
+		{
+			choice = "USDOLLAR TO EURO";
+		}
+		else if (C.name.equalsIgnoreCase("GBP"))
+		{
+			choice = "USDOLLAR TO POUND";
+		}
+		else if (C.name.equalsIgnoreCase("CAD"))
+		{
+			choice = "USDOLLAR TO CADOLLAR";
+		}
+
 		converted.name = C.name;
-		converted.rate = amount * C.rate;
+		converted.rate = converter.convertResult(amount, choice);
+
 
 		return converted;
 	}
