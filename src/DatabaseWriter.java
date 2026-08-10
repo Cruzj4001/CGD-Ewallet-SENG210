@@ -1,4 +1,4 @@
-package filefix;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,11 +11,7 @@ public class DatabaseWriter {
             double amount,
             int yearlyFrequency) {
 
-        String sql = """
-                INSERT INTO Expense
-                (source, amount, yearlyfrequency)
-                VALUES (?, ?, ?)
-                """;
+    	String sql = "INSERT INTO Expense (source, amount, yearlyfrequency) VALUES (?, ?, ?)";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -37,11 +33,7 @@ public class DatabaseWriter {
             double amount,
             int month) {
 
-        String sql = """
-                INSERT INTO Wage
-                (source, amount, month)
-                VALUES (?, ?, ?)
-                """;
+    	String sql = "INSERT INTO Wage (source, amount, month) VALUES (?, ?, ?)";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
