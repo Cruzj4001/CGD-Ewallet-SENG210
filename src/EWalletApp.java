@@ -65,6 +65,7 @@ public class EWalletApp implements Expenser
 
 				Expense ex = new Expense(expenseSource, expenseAmount, expenseFreq);
 				app.addExpense(ex);
+                DatabaseWriter.insertExpense(expenseSource, expenseAmount, expenseFreq);
 			}
 			else if (choice == 3)
 			{
