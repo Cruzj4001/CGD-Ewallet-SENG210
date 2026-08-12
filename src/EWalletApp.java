@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
+
 public class EWalletApp implements Expenser
 {
 
@@ -9,16 +12,11 @@ public class EWalletApp implements Expenser
 
 	private double monthlySavings;
 
-	public void CreateUser(String username, String password) 
-	{
-		
-	}
-
 	public static void main(String[] args)
 	{
 		EWalletApp app = new EWalletApp();
 		Scanner input = new Scanner(System.in);
-
+		User appUser  = new User("Username", "Password");
 		System.out.println("Welcome to your Ewallet!");
 
 		while (true)
@@ -31,6 +29,7 @@ public class EWalletApp implements Expenser
 			System.out.println("5. Convert Currency");
 			System.out.println("6. Export Report");
 			System.out.println("7. Exit");
+			System.out.println("8. Import");
 			System.out.print("Choose an option: ");
 
 			int choice = input.nextInt();
@@ -38,33 +37,11 @@ public class EWalletApp implements Expenser
 
 			if (choice == 1)
 			{
-				System.out.print("\nEnter the source of income: ");
-				String incomeSource = input.nextLine();
-
-				System.out.print("Enter income amount: ");
-				double incomeAmount = input.nextDouble();
-
-				System.out.print("Enter income frequency for the year: ");
-				int incomeFreq = input.nextInt();
-				input.nextLine();
-
-				Wage w = new Wage(incomeSource, incomeAmount, incomeFreq);
-				app.addMonthlyIncome(w);
+				AddMonthlyIncome addIncomeWindow = new AddMonthlyIncome(appUser);
 			}
 			else if (choice == 2)
 			{
-				System.out.print("\nEnter expense source: ");
-				String expenseSource = input.nextLine();
-
-				System.out.print("Enter expense amount: ");
-				double expenseAmount = input.nextDouble();
-
-				System.out.print("Enter expense frequency for the year: ");
-				int expenseFreq = input.nextInt();
-				input.nextLine();
-
-				Expense ex = new Expense(expenseSource, expenseAmount, expenseFreq);
-				app.addExpense(ex);
+				AddExpense addExpenseWindow = new AddExpense(appUser);
 			}
 			else if (choice == 3)
 			{
@@ -79,15 +56,15 @@ public class EWalletApp implements Expenser
 
     				if (reportChoice == 1)
     				{
-       					app.PrintIncomereport();
+    					PrintIncomeReport printExpenseReportWindow = new PrintIncomeReport(appUser);
     				}
     				else if (reportChoice == 2)
     				{
-        				app.PrintExpensereport();
+    					PrintExpenseReport printExpenseReportWindow = new PrintExpenseReport(appUser);
     				}
     				else if (reportChoice == 3)
     				{
-        				app.PrintFullreport();
+        				PrintFullReport printFullReportWindow = new PrintFullReport(appUser);
     				}
     				else
     				{
@@ -96,18 +73,12 @@ public class EWalletApp implements Expenser
 			}
 			else if (choice == 4)
 			{
-				app.updateMonthlySavings();
-
-				System.out.print("\nEnter item name: ");
-				String itemName = input.nextLine();
-
-				System.out.print("Enter item price: ");
-				double price = input.nextDouble();
-				input.nextLine();
-
-				System.out.println(" ");
-
-				app.whenCanIBuy(itemName, price);
+				if (appUser.monthlysavings > 0) {
+					whenCanIBuy whenCanIBuyWindow = new whenCanIBuy(appUser);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "You are not currently saving money each month.");
+				}
 			}
 			else if (choice == 5)
 			{
@@ -137,13 +108,16 @@ public class EWalletApp implements Expenser
 				System.out.print("\nEnter report file name: ");
 				String reportTitle = input.nextLine();
 
-				app.exportReport(reportTitle);
+				//app.exportReport(reportTitle);
 			}
 			else if (choice == 7)
 			{
 				break;
 
 		}
+			else if (choice == 8) {
+				loadFile loadFileWindow = new loadFile(appUser);
+			}
 
 		}
 
@@ -154,12 +128,6 @@ public class EWalletApp implements Expenser
 	public void addMonthlyIncome(Wage W) 
 	{
 		incomes.add(W);
-	}
-
-	@Override
-	public void addExpense(Expense Ex) 
-	{
-		expenses.add(Ex);
 	}
 
 	@Override
@@ -189,35 +157,6 @@ public class EWalletApp implements Expenser
 		}
 
 		System.out.println("\nTotal Income (Yearly): $" + totalIncome);
-	}
-
-	@Override
-	public void PrintExpensereport()
-	{
-		if (expenses.isEmpty())
-		{
-			System.out.println("No expense data exists.");
-			return;
-		}
-
-		double totalExpenses = 0;
-
-		System.out.println("\n===== EXPENSE REPORT =====");
-
-		for (Expense expense : expenses)
-		{
-			double yearlyExpense = expense.amount * expense.yearlyfrequency;
-
-			System.out.println(
-				"Source: " + expense.source +
-				" | Amount: $" + expense.amount +
-				" | Frequency: " + expense.yearlyfrequency +
-				" | Yearly: $" + yearlyExpense);
-
-			totalExpenses += yearlyExpense;
-		}
-
-		System.out.println("\nTotal Expenses (Yearly): $" + totalExpenses);
 	}
 
 	@Override
@@ -280,18 +219,18 @@ public class EWalletApp implements Expenser
     		}
 	}
 
-	@Override
-	public void PrintIncomereportbyTpe() {
-		throw new UnsupportedOperationException("Unimplemented method 'PrintIncomereportbyTpe'");
-	}
+	
+	//public void PrintIncomereportbyTpe() {
+		//throw new UnsupportedOperationException("Unimplemented method 'PrintIncomereportbyTpe'");
+	//}
 
-	@Override
-	public void PrintExpensebyType() {
-		throw new UnsupportedOperationException("Unimplemented method 'PrintExpensebyType'");
-	}
+	
+	//public void PrintExpensebyType() {
+		//throw new UnsupportedOperationException("Unimplemented method 'PrintExpensebyType'");
+	//}
 
-	@Override
-	public void exportReport(String reportTitle)
+	
+	/*public void exportReport(String reportTitle)
 	{	
    		try
     		{
@@ -319,13 +258,38 @@ public class EWalletApp implements Expenser
         System.out.println("Error exporting report: " + e.getMessage());
     }
 }
-	@Override
+*/
+	//I had created my own class for this feature below- BF
+	
+	@Override 
 	public Currency convertForeignCurrency(Currency C, double amount)
 	{
 		Currency converted = new Currency();
 
+		CurrencyConversion converter = new CurrencyConversion();
+
+		String choice = "";
+
+		if (C.name.equalsIgnoreCase("JPY"))
+		{
+			choice = "USDOLLAR TO JPYEN";
+		}
+		else if (C.name.equalsIgnoreCase("EUR"))
+		{
+			choice = "USDOLLAR TO EURO";
+		}
+		else if (C.name.equalsIgnoreCase("GBP"))
+		{
+			choice = "USDOLLAR TO POUND";
+		}
+		else if (C.name.equalsIgnoreCase("CAD"))
+		{
+			choice = "USDOLLAR TO CADOLLAR";
+		}
+
 		converted.name = C.name;
-		converted.rate = amount * C.rate;
+		converted.rate = converter.convertResult(amount, choice);
+
 
 		return converted;
 	}
@@ -357,26 +321,19 @@ public class EWalletApp implements Expenser
 		return months;
 	}
 
+	
+
 	@Override
-	public void updateMonthlySavings()
-	{
-		double totalMonthlyIncome = 0;
-		double totalMonthlyExpenses = 0;
-
-		for (Wage w : incomes)
-		{
-			double yearlyIncome = w.amount * w.Month;
-			totalMonthlyIncome += yearlyIncome / 12.0;
-		}
-
-		for (Expense e : expenses)
-		{
-			double yearlyExpense = e.amount * e.yearlyfrequency;
-			totalMonthlyExpenses += yearlyExpense / 12.0;
-		}
-
-		monthlySavings = totalMonthlyIncome - totalMonthlyExpenses;
-
-		System.out.println("\nMonthly savings updated: $" + monthlySavings);
+	public void AddExpense(User u) {
+		// TODO Auto-generated method stub
+		
 	}
+
+	@Override
+	public void PrintExpensereport() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }
