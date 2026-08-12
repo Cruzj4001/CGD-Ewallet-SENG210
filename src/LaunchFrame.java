@@ -30,7 +30,7 @@ public class LaunchFrame extends JFrame{
 		titlePanel.setBorder(new BevelBorder(BevelBorder.RAISED,null,null,null,null));
 
 
-		JLabel titleLabel = new JLabel("Welcome To THe E-Wallet App!");
+		JLabel titleLabel = new JLabel("Welcome To The E-Wallet App!");
 
 		titleLabel.setFont(new Font("8-bit Operator+", Font.PLAIN, 17));
 		titleLabel.setForeground(Color.WHITE);

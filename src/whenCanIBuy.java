@@ -75,12 +75,13 @@ public class whenCanIBuy extends JFrame implements ChangeListener{
 		contentPane.add(titlePanel, BorderLayout.NORTH);
 		titlePanel.setLayout(new BorderLayout(0, 0));
 		
-		JLabel tileLabel = new JLabel("Saving Estimator");
-		tileLabel.setFont(new Font("8-bit Operator+", Font.PLAIN, 17));
-		tileLabel.setForeground(Color.WHITE);
-		tileLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		tileLabel.setHorizontalTextPosition(SwingConstants.LEFT);
-		titlePanel.add(tileLabel);
+		
+		JLabel titleLabel = new JLabel("Saving Estimator");
+		titleLabel.setFont(new Font("8-bit Operator+", Font.PLAIN, 17));
+		titleLabel.setForeground(Color.WHITE);
+		titleLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		titleLabel.setHorizontalTextPosition(SwingConstants.LEFT);
+		titlePanel.add(titleLabel);
 		
 		JPanel featuresPanel = new JPanel();
 		featuresPanel.setBorder(new EmptyBorder(0, 5, 5, 5));

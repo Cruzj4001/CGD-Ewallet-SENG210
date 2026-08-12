@@ -33,7 +33,7 @@ public class CurrencyConversionFrame extends JFrame {
 	borderPanel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 	
 	
-	JLabel titleLabel = new JLabel(" Currency Converter");
+	JLabel titleLabel = new JLabel("Currency Converter");
 	titleLabel.setFont(new Font("8-bit Operator+", Font.PLAIN, 17));
 	titleLabel.setForeground(Color.WHITE);
 	borderPanel.add(titleLabel);
@@ -98,7 +98,7 @@ public class CurrencyConversionFrame extends JFrame {
 		
 	});
 	
-	add(bodyPanel, BorderLayout.CENTER);
+	add(borderPanel, BorderLayout.NORTH);
 	add(bodyPanel, BorderLayout.CENTER);
 	
 	

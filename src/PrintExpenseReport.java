@@ -142,7 +142,7 @@ public class PrintExpenseReport extends JFrame implements ActionListener{
 		contentPane.add(titlePanel, BorderLayout.NORTH);
 		titlePanel.setLayout(new BorderLayout(0, 0));
 		
-		JLabel tileLabel = new JLabel(" Print Expense Report");
+		JLabel tileLabel = new JLabel("Print Expense Report");
 		tileLabel.setFont(new Font("8-bit Operator+", Font.PLAIN, 17));
 		tileLabel.setForeground(Color.WHITE);
 		tileLabel.setHorizontalAlignment(SwingConstants.LEFT);

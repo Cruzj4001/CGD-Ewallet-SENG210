@@ -30,7 +30,7 @@ public class MainFrame extends JFrame {
 		titlePanel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 
 
-		JLabel titleLabel = new JLabel(" E-Wallet App");
+		JLabel titleLabel = new JLabel("E-Wallet App");
 		titleLabel.setFont(new Font("8-bit Operator+", Font.PLAIN, 17));
 		titleLabel.setForeground(Color.WHITE);
 
